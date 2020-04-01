@@ -67,13 +67,13 @@ echo "Creating new Firefox profile"
 mkdir ${FFXPROFILE}/
 firefox/firefox -CreateProfile "${FFXPROFILE} ${PWD}/${FFXPROFILE}"
 cp user.js ${PWD}/${FFXPROFILE}/
-sed -i -- "s|FFXCACHE|/tmp/$FFXPROFILE|g" ${PWD}/${FFXPROFILE}/user.js
+sed -i -- "s|FFXCACHE|cache-$FFXPROFILE|g" ${PWD}/${FFXPROFILE}/user.js
 else
 echo "That profile already exists. Something went wrong last time."
 exit
 fi
 
-mkdir -p /tmp/${FFXPROFILE}/
+mkdir -p /tmp/cache-${FFXPROFILE}/
 
 if [ "${PRIVATE}" == 'y' ]; then
 echo "Launching Private Firefox"
@@ -87,6 +87,6 @@ echo "Cleaning up ${FFXPROFILE}"
 rm -Rf ${FFXPROFILE}/
 
 echo "Cleaning up cache at /tmp/${FFXPROFILE}"
-rm -Rf /tmp/${FFXPROFILE}/
+rm -Rf /tmp/cache-${FFXPROFILE}/
 
 exit
