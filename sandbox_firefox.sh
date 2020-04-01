@@ -14,7 +14,6 @@ VERSION=${VERSION:-$(wget --spider -S --max-redirect 0 "https://download.mozilla
 
 if [ -f "firefox-${VERSION}.tar.bz2" ]; then
 	echo "Already have ${VERSION}"
-	exit
 fi
 
 echo "Fetching Firefox ${VERSION}"
@@ -38,6 +37,15 @@ fi
 echo -n "Extracting Firefox..."
 tar jxf firefox-${VERSION}.tar.bz2
 echo "Done"
+
+echo -n "Integrating uBlock Origin..."
+cd firefox/
+mkdir -p distribution/extensions
+cd distribution/extensions/
+wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.25.3rc0/uBlock0_1.25.3rc0.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
+cd ../../..
+echo "Done"
+
 }
 
 echo "Sandbox Private Firefox v1.0"
