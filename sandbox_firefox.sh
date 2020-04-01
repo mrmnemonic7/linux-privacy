@@ -48,7 +48,7 @@ echo "Done"
 
 }
 
-echo "Sandbox Private Firefox v1.0"
+echo "Sandbox Private Firefox v1.1"
 
 if [ "${AUTOUPDATE}" == 'y' ]; then
 update_firefox
