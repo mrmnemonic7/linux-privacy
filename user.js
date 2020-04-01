@@ -169,3 +169,7 @@ user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", "");
 // (Optional) Disable DRM
 //user_pref("browser.eme.ui.enabled", false);
 //user_pref("media.eme.enabled", false);
+
+// Browser cache
+user_pref("browser.cache.disk.enable", true);
+user_pref("browser.cache.disk.parent_directory", "/tmp/FFXCACHE");
