@@ -86,7 +86,7 @@ fi
 echo "Cleaning up ${FFXPROFILE}"
 rm -Rf ${FFXPROFILE}/
 
-echo "Cleaning up cache at /tmp/${FFXPROFILE}"
+echo "Cleaning up cache at /tmp/cache-${FFXPROFILE}"
 rm -Rf /tmp/cache-${FFXPROFILE}/
 
 exit
