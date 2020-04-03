@@ -38,17 +38,25 @@ echo -n "Extracting Firefox..."
 tar jxf firefox-${VERSION}.tar.bz2
 echo "Done"
 
-echo -n "Integrating uBlock Origin..."
+echo "Integrating add-ons"
 cd firefox/
 mkdir -p distribution/extensions
 cd distribution/extensions/
+
+echo -n "* uBlock Origin..."
 wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.25.3rc0/uBlock0_1.25.3rc0.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
-cd ../../..
 echo "Done"
+
+echo -n "* HTTPS Everywhere..."
+wget --quiet --no-clobber --continue "https://www.eff.org/files/https-everywhere-latest.xpi" -O https-everywhere-eff@eff.org.xpi
+echo "Done"
+
+cd ../../..
+echo "Finished add-on integration"
 
 }
 
-echo "Sandbox Private Firefox v1.1"
+echo "Sandbox Private Firefox v1.2"
 
 if [ "${AUTOUPDATE}" == 'y' ]; then
 update_firefox
