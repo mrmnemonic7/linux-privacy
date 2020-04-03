@@ -1,7 +1,8 @@
 #!/bin/bash
 
 WLAN=${1:-wlan0}
-DYNIP=y
+#Get this from the environment instead.
+#DYNIP=y
 IPADDR=192.168.1.50
 IPROUTE=192.168.1.1
 
