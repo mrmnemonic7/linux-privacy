@@ -1,6 +1,7 @@
 #!/bin/bash
 # Integrated download/update, run Firefox in a privacy-oriented sandbox. Should be able to run multiple-instances.
 # Run with: "AUTOUPDATE=y ./sandbox_firefox.sh" to check for and update to newer Firefox version.
+# 2020-04-04 - v1.3 - Integrate Decentral Eyes
 
 STARTPAGE="https://start.duckduckgo.com"
 
@@ -51,12 +52,16 @@ echo -n "* HTTPS Everywhere..."
 wget --quiet --no-clobber --continue "https://www.eff.org/files/https-everywhere-latest.xpi" -O https-everywhere-eff@eff.org.xpi
 echo "Done"
 
+echo -n "* Decentral Eyes..."
+wget --quiet --no-clobber --continue "https://git.synz.io/Synzvato/decentraleyes/uploads/1cc62e70f4c12195c4a7f032ba147593/Decentraleyes.v2.0.14-firefox.xpi" -O jid1-BoFifL9Vbdl2zQ@jetpack.xpi
+echo "Done"
+
 cd ../../..
 echo "Finished add-on integration"
 
 }
 
-echo "Sandbox Private Firefox v1.2"
+echo "Sandbox Private Firefox v1.3"
 
 if [ "${AUTOUPDATE}" == 'y' ]; then
 update_firefox
