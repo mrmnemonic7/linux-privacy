@@ -1,4 +1,5 @@
 #!/bin/bash
+# By Mr Mnemonic (C) 2020. MIT license.
 # Integrated download/update, run Firefox in a privacy-oriented sandbox. Should be able to run multiple-instances.
 # Run with: "AUTOUPDATE=y ./sandbox_firefox.sh" to check for and update to newer Firefox version.
 # 2020-04-04 - v1.3 - Integrate Decentral Eyes
