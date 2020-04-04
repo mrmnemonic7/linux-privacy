@@ -32,11 +32,13 @@ fi
 case "$CMD" in
 	encrypt)
 	echo -n "${MYKEY1}" | openssl enc -aes-256-cbc -salt -in "${INFILE}" -out "${INFILE}".enc -pass stdin
+	echo "Output ${INFILE}.enc"
 	;;
 	decrypt)
 	OUTFILE="${INFILE%.*}"
 	echo -n "${MYKEY1}" | openssl enc -aes-256-cbc -d -in "${INFILE}" -out "${OUTFILE}" -pass stdin
+	echo "Output ${OUTFILE}"
 	;;
 esac
 
-echo "Output ${INFILE}.enc"
+exit
