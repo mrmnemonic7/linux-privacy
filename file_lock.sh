@@ -1,4 +1,5 @@
 #!/bin/bash
+# By Mr Mnemonic (C) 2020. MIT license.
 
 if [ -z "$1" ]; then
 echo "Choose either encrypt or decrypt"
