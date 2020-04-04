@@ -16,7 +16,7 @@ ifconfig ${WLAN} up
 echo "Done"
 
 echo -n "Negotiating WPA..."
-wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf -f /var/log/wpa.log
+wpa_supplicant -B -t -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf -f /var/log/wpa.log
 sleep 5
 echo "Done"
 
