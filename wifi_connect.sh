@@ -8,7 +8,7 @@ IPROUTE=192.168.1.1
 
 echo "WiFi Connect"
 
-echo -n "Dropping connection"
+echo -n "Dropping connection..."
 killall dhclient &> /dev/null
 killall wpa_supplicant
 ifconfig ${WLAN} down
