@@ -38,6 +38,9 @@ echo -n "Updating ${TOR_LOC}/torrc..."
 echo "" >> ${TOR_LOC}/torrc
 echo "# Tor Multi-Eyes Blocker" >> ${TOR_LOC}/torrc
 
+echo "StrictNodes 1" >> ${TOR_LOC}/torrc
+echo "GeoIPExcludeUnknown 1" >> ${TOR_LOC}/torrc
+
 if [ "${PARANOID}" == "1" ]; then
 echo "ExcludeNodes {fr},{il},{kr},{kp}" >> ${TOR_LOC}/torrc
 fi
@@ -46,11 +49,15 @@ if [ "${EYES}" == "14" ]; then
 echo "Excluding 14 eyes..."
 echo "# Exclude 14 Eyes" >> ${TOR_LOC}/torrc
 echo "ExcludeExitNodes {au},{nz},{us},{ca},{gb},{be},{dk},{fr},{de},{it},{nl},{no},{es},{se}" >> ${TOR_LOC}/torrc
+echo "NodeFamily {au},{nz},{us},{ca},{gb},{be},{dk},{fr},{de},{it},{nl},{no},{es},{se}" >> ${TOR_LOC}/torrc
 else
 echo "Excluding 5 eyes..."
 echo "# Exclude 5 Eyes" >> ${TOR_LOC}/torrc
 echo "ExcludeExitNodes {au},{nz},{us},{ca},{gb}" >> ${TOR_LOC}/torrc
+echo "NodeFamily {au},{nz},{us},{ca},{gb}" >> ${TOR_LOC}/torrc
 fi
+
+echo "PathsNeededToBuildCircuits 0.95" >> ${TOR_LOC}/torrc
 
 echo "Done"
 else
