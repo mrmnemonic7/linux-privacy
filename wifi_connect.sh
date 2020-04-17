@@ -1,10 +1,12 @@
 #!/bin/bash
 
 WLAN=${1:-wlan0}
-#Get this from the environment instead.
-#DYNIP=y
-IPADDR=192.168.1.50
-IPROUTE=192.168.1.1
+#TODO: Get this from the environment instead.
+DYNIP=y
+DYNDNS=y
+# Set IP and route here
+#IPADDR=
+#IPROUTE=
 
 echo "WiFi Connect"
 
@@ -30,10 +32,7 @@ route add default gw ${IPROUTE}
 fi
 echo "Done"
 
-echo "Update the DNS records now?"
-read -p "[y/n] :" response
-
-if [ "${response}" == 'y' ]; then
+if [ "${DYNDNS}" == 'y' ]; then
 echo -n "Updating DNS resolver..."
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 echo "nameserver 1.0.0.1" >> /etc/resolv.conf
