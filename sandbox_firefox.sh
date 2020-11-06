@@ -54,7 +54,7 @@ wget --quiet --no-clobber --continue "https://www.eff.org/files/https-everywhere
 echo "Done"
 
 echo -n "* Decentral Eyes..."
-wget --quiet --no-clobber --continue "https://git.synz.io/Synzvato/decentraleyes/uploads/1cc62e70f4c12195c4a7f032ba147593/Decentraleyes.v2.0.14-firefox.xpi" -O jid1-BoFifL9Vbdl2zQ@jetpack.xpi
+wget --quiet --no-clobber --continue "https://git.synz.io/Synzvato/decentraleyes/uploads/a36861e0609e43d87379805ca0db063f/Decentraleyes.v2.0.15-firefox.xpi" -O jid1-BoFifL9Vbdl2zQ@jetpack.xpi
 echo "Done"
 
 cd ../../..
