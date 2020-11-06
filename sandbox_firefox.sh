@@ -46,7 +46,7 @@ mkdir -p distribution/extensions
 cd distribution/extensions/
 
 echo -n "* uBlock Origin..."
-wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.26.3b0/uBlock0_1.26.3b0.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
+wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.30.9b7/uBlock0_1.30.9b7.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
 echo "Done"
 
 echo -n "* HTTPS Everywhere..."
