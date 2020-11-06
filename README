@@ -11,4 +11,5 @@ tor_block.sh - Block all external non-Tor traffic on your local machine.
 tor_dns.sh - Make sure Tor is set up to resolve .onion domains and re-directs all other local DNS queries to it as well.
 tor_eyes.sh - Exclude Exit Nodes in 5 Eyes or 14 Eyes countries from being used.
 wifi_connect.sh - Basic WiFi reset and connect script. Optionally supports static IP addresses. Presumes wpa_supplicant already knows about a network or two.
+update_adblock.sh - Fetch PGL adblock list for dnsmasq and creates/updates file with latest offenders.
 user.js - User.js preferences for Firefox.
