@@ -42,7 +42,7 @@ echo "StrictNodes 1" >> ${TOR_LOC}/torrc
 echo "GeoIPExcludeUnknown 1" >> ${TOR_LOC}/torrc
 
 if [ "${PARANOID}" == "1" ]; then
-echo "ExcludeNodes {fr},{il},{kr},{kp}" >> ${TOR_LOC}/torrc
+echo "ExcludeNodes {il},{kr},{kp}" >> ${TOR_LOC}/torrc
 fi
 
 if [ "${EYES}" == "14" ]; then
