@@ -1,10 +1,10 @@
 #!/bin/bash
-# By Mr Mnemonic (C) 2020. MIT license.
+# By Mr Mnemonic 7 (C) 2022. MIT license.
 # Integrated download/update, run Firefox in a privacy-oriented sandbox. Should be able to run multiple-instances.
 # Run with: "AUTOUPDATE=y ./sandbox_firefox.sh" to check for and update to newer Firefox version.
 # 2020-04-04 - v1.3 - Integrate Decentral Eyes
 
-STARTPAGE="https://start.duckduckgo.com"
+STARTPAGE="https://searx.prvcy.eu"
 
 function update_firefox()
 {
@@ -25,12 +25,6 @@ echo -n "Fetching Firefox..."
 wget -nv --no-clobber --continue --content-disposition 'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-GB'
 echo "Done"
 
-# Fetch uBlock Origin
-# TODO - implement this properly
-#echo -n "Fetching uBlock Origin..."
-#wget -nv --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.18.0/uBlock0_1.18.0.firefox.xpi"
-#echo "Done"
-
 if [ -d ./firefox/ ]; then
 echo "Previous Firefox detected, deleting..."
 rm -Rf firefox/
@@ -46,15 +40,16 @@ mkdir -p distribution/extensions
 cd distribution/extensions/
 
 echo -n "* uBlock Origin..."
-wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.30.9b7/uBlock0_1.30.9b7.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
+wget --quiet --no-clobber --continue "https://github.com/gorhill/uBlock/releases/download/1.45.3rc5/uBlock0_1.45.3rc5.firefox.signed.xpi" -O uBlock0@raymondhill.net.xpi
 echo "Done"
 
-echo -n "* HTTPS Everywhere..."
-wget --quiet --no-clobber --continue "https://www.eff.org/files/https-everywhere-latest.xpi" -O https-everywhere-eff@eff.org.xpi
-echo "Done"
+#This is now an internal feature
+#echo -n "* HTTPS Everywhere..."
+#wget --quiet --no-clobber --continue "https://www.eff.org/files/https-everywhere-latest.xpi" -O https-everywhere-eff@eff.org.xpi
+#echo "Done"
 
 echo -n "* Decentral Eyes..."
-wget --quiet --no-clobber --continue "https://git.synz.io/Synzvato/decentraleyes/uploads/a36861e0609e43d87379805ca0db063f/Decentraleyes.v2.0.15-firefox.xpi" -O jid1-BoFifL9Vbdl2zQ@jetpack.xpi
+wget --quiet --no-clobber --continue "https://addons.mozilla.org/firefox/downloads/file/3902154/decentraleyes-2.0.17.xpi" -O jid1-BoFifL9Vbdl2zQ@jetpack.xpi
 echo "Done"
 
 cd ../../..
@@ -62,7 +57,7 @@ echo "Finished add-on integration"
 
 }
 
-echo "Sandbox Private Firefox v1.3"
+echo "Sandbox Private Firefox v1.4"
 
 if [ "${AUTOUPDATE}" == 'y' ]; then
 update_firefox
