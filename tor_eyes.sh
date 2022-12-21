@@ -1,15 +1,45 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
-EYES=5
-else
-EYES=$1
-fi
-
-# Prevent certain country nodes from being used
-PARANOID=1
+FIVEEYE="{au},{nz},{us},{ca},{gb}"
+FOURTEEN="{be},{dk},{fr},{de},{it},{nl},{no},{es},{se}"
+MIDEAST="{af},{kz},{kg},{tj},{tm},{uz},{ir}"
+EXTRA="{kp},{kr}"
 
 echo "Tor Multi-Eyes blocker"
+
+if [ "$1" == "" ] || [ $# -gt 1 ]; then
+echo "Please specify level 1,2 or 3"
+echo "Level 1: Five Eyes"
+echo "Level 2: Fourteen Eyes"
+echo "Level 3: Includes Level 2 plus Middle East"
+echo "Level 4: Includes Level 3 plus other nasties"
+exit
+else
+    LEVEL=$1
+    case ${LEVEL} in
+        "1")
+            echo "Processing Level 1"
+            BLOCKLIST="${FIVEEYE}"
+            ;;
+        "2")
+            echo "Processing Level 2"
+            BLOCKLIST="${FIVEEYE},${FOURTEEN}"
+            ;;
+        "3")
+            echo "Processing Level 3"
+            BLOCKLIST="${FIVEEYE},${FOURTEEN},${MIDEAST}"
+            ;;
+        "4")
+            echo "Processing Level 4"
+            BLOCKLIST="${FIVEEYE},${FOURTEEN},${MIDEAST},${EXTRA}"
+            ;;
+        *)
+        echo "Unknown level specified"
+        exit
+        ;;
+    esac
+fi
+
 echo "Searching for Tor..."
 #TOR_LOC=$(whereis tor | awk '{print $4}')
 TOR_LOC=$(which tor)
@@ -38,30 +68,22 @@ echo -n "Updating ${TOR_LOC}/torrc..."
 echo "" >> ${TOR_LOC}/torrc
 echo "# Tor Multi-Eyes Blocker" >> ${TOR_LOC}/torrc
 
-echo "StrictNodes 1" >> ${TOR_LOC}/torrc
 echo "GeoIPExcludeUnknown 1" >> ${TOR_LOC}/torrc
 
-if [ "${PARANOID}" == "1" ]; then
-echo "ExcludeNodes {il},{kr},{kp}" >> ${TOR_LOC}/torrc
-fi
+#Investigate how important this is
+#if [ "${PARANOID}" == "1" ]; then
+#echo "ExcludeNodes {il},{kr},{kp},{ir}" >> ${TOR_LOC}/torrc
+#fi
 
-if [ "${EYES}" == "14" ]; then
-echo "Excluding 14 eyes..."
-echo "# Exclude 14 Eyes" >> ${TOR_LOC}/torrc
-echo "ExcludeExitNodes {au},{nz},{us},{ca},{gb},{be},{dk},{fr},{de},{it},{nl},{no},{es},{se}" >> ${TOR_LOC}/torrc
-echo "NodeFamily {au},{nz},{us},{ca},{gb},{be},{dk},{fr},{de},{it},{nl},{no},{es},{se}" >> ${TOR_LOC}/torrc
-else
-echo "Excluding 5 eyes..."
-echo "# Exclude 5 Eyes" >> ${TOR_LOC}/torrc
-echo "ExcludeExitNodes {au},{nz},{us},{ca},{gb}" >> ${TOR_LOC}/torrc
-echo "NodeFamily {au},{nz},{us},{ca},{gb}" >> ${TOR_LOC}/torrc
-fi
-
+echo "ExcludeExitNodes ${BLOCKLIST}" >> ${TOR_LOC}/torrc
+echo "NodeFamily ${BLOCKLIST}" >> ${TOR_LOC}/torrc
+echo "StrictNodes 1" >> ${TOR_LOC}/torrc
 echo "PathsNeededToBuildCircuits 0.95" >> ${TOR_LOC}/torrc
 
 echo "Done"
 else
-echo "Already processed for 14 eyes"
+echo "Already processed."
 fi
 
+echo "Tor should now be restarted for the changes to take effect."
 exit
