@@ -125,7 +125,12 @@ def db_import_files(databasefile):
 
 if __name__ == "__main__":
     global conn
-    print("File2DB v2 by MrMnemonic7.")
+    print("File2DB v2 by MrMnemonic7.\n")
+    if len(sys.argv)<3:
+        print("./file2db.py import files.db - Imports all files in directory into SQLite3 database.")
+        print("./file2db.py export files.db - Exports all files in database into current directory. Will overwrite.")
+        print("\nSee head of source for basic SQL structure and statement.")
+        sys.exit()
     cmd=sys.argv[1]
     databasefile=sys.argv[2]
     conn = sqlite3.connect(databasefile)
