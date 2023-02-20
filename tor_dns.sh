@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UPDATE_FIREWALL=n
+UPDATE_FIREWALL=y
 UFS=' '
 TOR_PATH=$(whereis tor | awk '{print $4}')
 read -a strarr <<< "$TOR_PATH"
