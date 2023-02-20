@@ -173,3 +173,8 @@ user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", "");
 // Browser cache
 user_pref("browser.cache.disk.enable", true);
 user_pref("browser.cache.disk.parent_directory", "/tmp/FFXCACHE");
+
+// For Tor
+user_pref("network.proxy.socks", "127.0.0.1");
+user_pref("network.proxy.socks_port", 9050);
+user_pref("network.dns.blockDotOnion", false);
