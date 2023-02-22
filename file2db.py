@@ -45,7 +45,7 @@ def getmd5hash(filename):
 
 def insert_into_database(file_name, file_size, file_date, file_checksum):
     modified = datetime.fromtimestamp(file_date)
-    print("Processing "+file_name+" Size: "+file_size+" Date: "+modified)
+    print("[INFO] Processing "+file_name+" Size: "+str(file_size)+" Date: "+str(modified))
     with open(file_name, "rb") as file:
         data = file.read()
 
@@ -56,7 +56,7 @@ def insert_into_database(file_name, file_size, file_date, file_checksum):
             cur = conn.cursor()
             cur.execute(sql_insert_file_query, (0, file_size, modified, file_name, file_checksum, data))
             conn.commit()
-            print("[INFO] : The blob for ", file_name, " is in the database.") 
+            #print("[INFO] : The blob for ", file_name, " is in the database.")
             last_updated_entry = cur.lastrowid
             return last_updated_entry
         except Error as e:
