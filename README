@@ -14,3 +14,5 @@ wifi_connect.sh - Basic WiFi reset and connect script. Optionally supports stati
 update_adblock.sh - Fetch PGL adblock list for dnsmasq and creates/updates file with latest offenders.
 user.js - User.js preferences for Firefox.
 file2db.py - Simple file importer and exporter for an SQLite3 database for secure storage.
+
+Now accepting donations via Bitcoin and Monero!
